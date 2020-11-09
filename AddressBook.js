@@ -1,4 +1,4 @@
-//UC5 - ability to find size of the address book
+//UC7 - ability to check for duplicate contact in the address book
 class Contact{
     constructor (...params){
         this.firstName = params[0];
@@ -89,6 +89,19 @@ class Contact{
 }
 
 let addressBook = new Array();
+function addContact(contact){
+    name = contact.firstName+" "+contact.lastName;
+    let num ="0";
+    addressBook.filter(
+        contact1 => (name != (contact1.firstName+" "+contact1.lastName))?num++:num 
+        );
+        if(num==addressBook.length){
+            addressBook.push(contact);
+            console.log("Contact "+name+" added Successfully!!");
+        }else {
+            console.log("Duplicate entry not allowed for "+name+ " !!!");
+        }
+    }    
 try{
     let contact1 = new Contact("Emily","Clark","Address 1","City zero","State zero",123456,919999999999,"ema@yahoo.com");
     addressBook.push(contact1);
@@ -98,7 +111,6 @@ try{
     addressBook.push(contact3);
     let contact4 = new Contact("Ritu","Sharma","Address 4","City Four","State Four",232323,919898339811,"ritu@gmail.com");
     addressBook.push(contact4);
-    
 }catch(e){
     console.error(e);
 }
@@ -160,8 +172,14 @@ function deleteContact(firstName,lastName){
      console.log("Contact "+firstName+" "+lastName+" does not exist!");
  }
 }
-console.log("Show the size of Address Book!");
+console.log("Check for duplicate contact in the Address Book!");
+try{
+addContact(new Contact("Beetret","Wimson","Address 6","City five","State five",444444,919292929292,"raju@gmail.com"));
+addContact(new Contact("David","Doughlas","Address 3","City Three","State three",222222,919898989811,"dav@gmail.com"));
+}catch(e){
+    console.error(e);
+}
 var size = addressBook.reduce(function(n,contact){
     return n+(contact.firstName != 'undefined');
 },0);
-console.log("Address Book Size using reduce is :"+size);
+console.log("Address Book Size : "+size);
