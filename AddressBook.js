@@ -1,4 +1,4 @@
-//UC3 - find contact using firstname in the address book and edit the details
+//UC5 - ability to find contact by its first name and delete it
 class Contact{
     constructor (...params){
         this.firstName = params[0];
@@ -109,7 +109,6 @@ return foundContact;
 else 
 return "Contact "+firstName+" "+lastName+" does not exist in the Address Book!!";
 }
-console.log("Find Contact and update details!");
 function updateDetails(contact, type , update){
     if(contact.firstName != undefined){
  switch(type){
@@ -152,7 +151,17 @@ function updateDetails(contact, type , update){
 }
  return contact;
 }
-
-console.log(updateDetails(findContact("Robert","Brown"),"LAST_NAME","Brooke"));
-console.log(updateDetails(findContact("Ritu","Sharma"),"ZIP",124412));
-console.log(updateDetails(findContact("Vilas","Khare"),"FIRST_NAME","Vikas"));
+function deleteContact(firstName,lastName){
+    let deleteContact = findContact(firstName,lastName);
+ if(deleteContact.firstName != undefined){
+     addressBook.pop(findContact(firstName,lastName));
+     console.log("Contact "+firstName+" "+lastName+" removed successfully!!");
+ }else{
+     console.log("Contact "+firstName+" "+lastName+" does not exist!");
+ }
+}
+console.log("Delete Contact and Update Address Book!");
+deleteContact("Ritu","Sharma");  //delete contact when exists
+deleteContact("Vastu","Sharma");  // contact does not exists
+console.log("Address Book size : "+addressBook.length);
+console.log("Address Book contacts : "+addressBook);
