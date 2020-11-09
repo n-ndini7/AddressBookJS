@@ -1,4 +1,4 @@
-//UC3 - create new address book array and add new contacts to it
+//UC3 - find contact using firstname in the address book and edit the details
 class Contact{
     constructor (...params){
         this.firstName = params[0];
@@ -51,7 +51,7 @@ class Contact{
         return this._state;
     }
     set state(state){
-        let stateRegex = RegExp('^[A-Z]{1}[a-z +]{4,}$');
+        let stateRegex = RegExp('^[A-Z]{1}[a-z A-Z+]{4,}$');
         if(stateRegex.test(state))
         this._state=state;
         else throw "State is Invalid!! "+state;
@@ -96,7 +96,63 @@ try{
     addressBook.push(contact2);
     let contact3 = new Contact("David","Doughlas","Address 3","City Three","State three",222222,919898989811,"dav@gmail.com");
     addressBook.push(contact3);
+    let contact4 = new Contact("Ritu","Sharma","Address 4","City Four","State Four",232323,919898339811,"ritu@gmail.com");
+    addressBook.push(contact4);
+    
 }catch(e){
     console.error(e);
 }
-console.log("Address Book Contacts are : \n \n"+addressBook);
+function findContact(firstName, lastName){
+let foundContact = addressBook.find( contact => ((contact.firstName == firstName) && (contact.lastName==lastName)));
+if(foundContact != null)
+return foundContact;
+else 
+return "Contact "+firstName+" "+lastName+" does not exist in the Address Book!!";
+}
+console.log("Find Contact and update details!");
+function updateDetails(contact, type , update){
+    if(contact.firstName != undefined){
+ switch(type){
+     case "FIRST_NAME":
+         contact.firstName = update;
+         console.log("First Name updated of "+contact.firstName+" "+contact.lastName+" Contact!!");
+         break;
+    case "LAST_NAME":
+        contact.lastName = update;
+        console.log("Last Name updated of "+contact.firstName+" "+contact.lastName+" Contact!!");
+        break;
+    case "ADDRESS":
+        contact.address = update;
+        console.log("Address updated of "+contact.firstName+" "+contact.lastName+" Contact!!");
+        break;
+    case "CITY":
+        contact.city = update;
+        console.log("City updated of "+contact.firstName+" "+contact.lastName+" Contact!!");
+        break;
+    case "STATE":
+        contact.state = update;
+        console.log("State updated of "+contact.firstName+" "+contact.lastName+" Contact!!");
+        break;
+    case "ZIP":
+        contact.zip = update;
+        console.log("ZIP updated of "+contact.firstName+" "+contact.lastName+" Contact!!"); 
+        break;
+    case "PHONE":
+        contact.phone = update;
+        console.log("Phone number updated of "+contact.firstName+" "+contact.lastName+" Contact!!");
+        break;
+    case "EMAIL":
+        contact.email = update;
+        console.log("Email updated of "+contact.firstName+" "+contact.lastName+" Contact!!"); 
+        break;
+    default :
+        console.log("Property does not exist!!");
+        break;
+ }
+}
+ return contact;
+}
+
+console.log(updateDetails(findContact("Robert","Brown"),"LAST_NAME","Brooke"));
+console.log(updateDetails(findContact("Ritu","Sharma"),"ZIP",124412));
+console.log(updateDetails(findContact("Vilas","Khare"),"FIRST_NAME","Vikas"));
