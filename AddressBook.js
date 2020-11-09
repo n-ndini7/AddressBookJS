@@ -106,9 +106,9 @@ try{
     addressBook.push(contact1);
     let contact2 = new Contact("Robert","Brown","Address 2","Vellore","Tamil Nadu",777777,919898989898,"rob@gmail.com");
     addressBook.push(contact2);
-    let contact3 = new Contact("David","Doughlas","Address 3","Dehradun","Uttarakhand",222222,919898989811,"dav@gmail.com");
+    let contact3 = new Contact("David","Doughlas","Address 3","Gwalior","Madhya Pradesh",222222,919898989811,"dav@gmail.com");
     addressBook.push(contact3);
-    let contact4 = new Contact("Ritu","Sharma","Address 4","Madurai","Karnataka",232323,919898339811,"ritu@gmail.com");
+    let contact4 = new Contact("Ritu","Sharma","Address 4","Durgapur","West Bengal",232323,919898339811,"ritu@gmail.com");
     addressBook.push(contact4);
 }catch(e){
     console.error(e);
@@ -214,4 +214,24 @@ function viewBychoice(typeOfView,key){
 function sortByfirstName(){
     return addressBook.sort((contact1,contact2) => (contact1.firstName).localeCompare(contact2.firstName));
 }
-console.log("Sorted Address Book by First Name : "+sortByfirstName()); 
+function sortByChoice(choice)
+{
+   switch(choice){
+       case "CITY":
+            return addressBook.sort((contact1,contact2) => (contact1.city).localeCompare(contact2.city));
+        case "STATE":
+            return addressBook.sort((contact1,contact2) => (contact1.state).localeCompare(contact2.state));   
+        case "ZIP":
+            function compare(contact1,contact2){
+                if(contact1.zip > contact2.zip) return 1;
+                if(contact1.zip < contact2.zip) return -1;
+            }
+            return addressBook.sort(compare);
+        default :
+            console.log("Wrong choice entered!!");
+            break;
+   } 
+}
+console.log("Sorted Address Book by City :"+sortByChoice("CITY"));
+console.log("Sorted Address Book by State :"+sortByChoice("STATE"));
+console.log("Sorted Address Book by ZIP :"+sortByChoice("ZIP"));
