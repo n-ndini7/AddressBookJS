@@ -1,4 +1,4 @@
-//UC2 - regex and exceptions added for properties of contact
+//UC3 - create new address book array and add new contacts to it
 class Contact{
     constructor (...params){
         this.firstName = params[0];
@@ -84,65 +84,19 @@ class Contact{
         else throw "Email is Invalid!! "+email;
     }
     toString(){
-        return "First Name : "+this.firstName+" \nLast Name : "+this.lastName+" \nAddress : "+this.address+" \nCity : "+this.city+" \nState : "+this.state+" \nZIP : "+this.zip+" \nPhone number : "+this.phone+" \nEmail : "+this.email;
+        return "Contact => First Name : "+this.firstName+" , Last Name : "+this.lastName+" \nAddress : "+this.address+" , City : "+this.city+" , State : "+this.state+" , ZIP : "+this.zip+" \nPhone number : "+this.phone+" , Email : "+this.email+"\n \n";
     }
 }
 
-let contact1 = new Contact("Emily","Clark","Address 1","City zero","State zero",123456,919999999999,"ema@yahoo.com");
-console.log(contact1.toString());
-//first name regex check
+let addressBook = new Array();
 try{
-  let contact2 = new Contact("rit" ,"Sharma","Address2","City one","State one",111111,919999999991,"ritu@gmail.com");
-  console.log(contact2.toString());
+    let contact1 = new Contact("Emily","Clark","Address 1","City zero","State zero",123456,919999999999,"ema@yahoo.com");
+    addressBook.push(contact1);
+    let contact2 = new Contact("Robert","Brown","Address 2","City Two","State two",777777,919898989898,"rob@gmail.com");
+    addressBook.push(contact2);
+    let contact3 = new Contact("David","Doughlas","Address 3","City Three","State three",222222,919898989811,"dav@gmail.com");
+    addressBook.push(contact3);
 }catch(e){
     console.error(e);
 }
-//last name regex check 
-try{
-    let contact2 = new Contact("Ritu" ,"sharma","Address2","City one","State one",111111,919999999991,"ritu@gmail.com");
-    console.log(contact2.toString());
-  }catch(e){
-      console.error(e);
-  }
-//address regex check
-try{
-    let contact2 = new Contact("Ritu" ,"Sharma","add","City one","State one",111111,919999999991,"ritu@gmail.com");
-    console.log(contact2.toString());
-  }catch(e){
-      console.error(e);
-  }
-  //city regex check
-  try{
-    let contact2 = new Contact("Ritu" ,"Sharma","Address2","city One","State one",111111,919999999991,"ritu@gmail.com");
-    console.log(contact2.toString());
-  }catch(e){
-      console.error(e);
-  }
-  //state regex check
-  try{
-    let contact2 = new Contact("Ritu" ,"Sharma","Address2","City one","state one",111111,919999999991,"ritu@gmail.com");
-    console.log(contact2.toString());
-  }catch(e){
-      console.error(e);
-  }
-  // zip regex check
-  try{
-    let contact2 = new Contact("Ritu" ,"Sharma","Address2","City one","State one","A11111",919999999991,"ritu@gmail.com");
-    console.log(contact2.toString());
-  }catch(e){
-      console.error(e);
-  }
-  // phone number regex check 
-  try{
-    let contact2 = new Contact("Ritu" ,"Sharma","Address2","City one","State one",111111,914999999991,"ritu@gmail.com");
-    console.log(contact2.toString());
-  }catch(e){
-      console.error(e);
-  }
-  // email regex check
-  try{
-    let contact2 = new Contact("Ritu" ,"Sharma","Address2","City one","State one",111111,919999999991,"ritu@gm.c");
-    console.log(contact2.toString());
-  }catch(e){
-      console.error(e);
-  }
+console.log("Address Book Contacts are : \n \n"+addressBook);
