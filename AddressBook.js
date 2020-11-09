@@ -1,4 +1,3 @@
-//UC9 - view persons by city or state
 class Contact{
     constructor (...params){
         this.firstName = params[0];
@@ -197,7 +196,7 @@ function searchContact(firstName,lastName,typeOfSearch,key){
     console.log("No such search can be performed!");
     }
 }
-console.log("Cunt persons by city or State!");
+console.log("Sort Address Book by First Name!");
 var size = addressBook.reduce(function(n,contact){
    return n+(contact.firstName != 'undefined');
 },0);
@@ -212,7 +211,11 @@ function viewBychoice(typeOfView,key){
             break;
     }
 }
-let personsInACity = viewBychoice("CITY","City One");
-let personsInAstate = viewBychoice("STATE","State Four");
-console.log("Number of Contacts in City One : "+personsInACity.length);
-console.log("Number of Contacts in State Three : "+personsInAstate.length);
+function sortByfirstName(){
+  function compare(contact1,contact2){
+      if(contact1.firstName > contact2.firstName) return 1;
+      if(contact1.firstName < contact2.firstName) return -1;
+  }
+  return addressBook.sort(compare);
+}
+console.log("Sorted Address Book by First Name : "+sortByfirstName());
