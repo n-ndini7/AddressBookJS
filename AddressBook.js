@@ -102,13 +102,13 @@ function addContact(contact){
         }
     }    
 try{
-    let contact1 = new Contact("Emily","Clark","Address 1","City One","State zero",123456,919999999999,"ema@yahoo.com");
+    let contact1 = new Contact("Emily","Clark","Address 1","Banaras","Uttar Pradesh",123456,919999999999,"ema@yahoo.com");
     addressBook.push(contact1);
-    let contact2 = new Contact("Robert","Brown","Address 2","City One","State two",777777,919898989898,"rob@gmail.com");
+    let contact2 = new Contact("Robert","Brown","Address 2","Vellore","Tamil Nadu",777777,919898989898,"rob@gmail.com");
     addressBook.push(contact2);
-    let contact3 = new Contact("David","Doughlas","Address 3","City Three","State three",222222,919898989811,"dav@gmail.com");
+    let contact3 = new Contact("David","Doughlas","Address 3","Gwalior","Madhya Pradesh",222222,919898989811,"dav@gmail.com");
     addressBook.push(contact3);
-    let contact4 = new Contact("Ritu","Sharma","Address 4","City Four","State Four",232323,919898339811,"ritu@gmail.com");
+    let contact4 = new Contact("Ritu","Sharma","Address 4","Durgapur","West Bengal",232323,919898339811,"ritu@gmail.com");
     addressBook.push(contact4);
 }catch(e){
     console.error(e);
@@ -196,7 +196,7 @@ function searchContact(firstName,lastName,typeOfSearch,key){
     console.log("No such search can be performed!");
     }
 }
-console.log("Sort Address Book by First Name!");
+console.log("Sort Address Book by Choice!");
 var size = addressBook.reduce(function(n,contact){
    return n+(contact.firstName != 'undefined');
 },0);
@@ -212,10 +212,26 @@ function viewBychoice(typeOfView,key){
     }
 }
 function sortByfirstName(){
-  function compare(contact1,contact2){
-      if(contact1.firstName > contact2.firstName) return 1;
-      if(contact1.firstName < contact2.firstName) return -1;
-  }
-  return addressBook.sort(compare);
+    return addressBook.sort((contact1,contact2) => (contact1.firstName).localeCompare(contact2.firstName));
 }
-console.log("Sorted Address Book by First Name : "+sortByfirstName());
+function sortByChoice(choice)
+{
+   switch(choice){
+       case "CITY":
+            return addressBook.sort((contact1,contact2) => (contact1.city).localeCompare(contact2.city));
+        case "STATE":
+            return addressBook.sort((contact1,contact2) => (contact1.state).localeCompare(contact2.state));   
+        case "ZIP":
+            function compare(contact1,contact2){
+                if(contact1.zip > contact2.zip) return 1;
+                if(contact1.zip < contact2.zip) return -1;
+            }
+            return addressBook.sort(compare);
+        default :
+            console.log("Wrong choice entered!!");
+            break;
+   } 
+}
+console.log("Sorted Address Book by City :"+sortByChoice("CITY"));
+console.log("Sorted Address Book by State :"+sortByChoice("STATE"));
+console.log("Sorted Address Book by ZIP :"+sortByChoice("ZIP"));
