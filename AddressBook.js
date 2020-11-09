@@ -197,7 +197,7 @@ function searchContact(firstName,lastName,typeOfSearch,key){
     console.log("No such search can be performed!");
     }
 }
-console.log("view person by city or State!");
+console.log("Cunt persons by city or State!");
 var size = addressBook.reduce(function(n,contact){
    return n+(contact.firstName != 'undefined');
 },0);
@@ -212,5 +212,7 @@ function viewBychoice(typeOfView,key){
             break;
     }
 }
-console.log("Contacts in City One \n \n "+viewBychoice("CITY","City One"));
-console.log("Contacts in State Three \n \n"+viewBychoice("STATE","State Four"));
+let personsInACity = viewBychoice("CITY","City One");
+let personsInAstate = viewBychoice("STATE","State Four");
+console.log("Number of Contacts in City One : "+personsInACity.length);
+console.log("Number of Contacts in State Three : "+personsInAstate.length);
