@@ -1,4 +1,4 @@
-//UC5 - ability to find contact by its first name and delete it
+//UC5 - ability to find size of the address book
 class Contact{
     constructor (...params){
         this.firstName = params[0];
@@ -160,8 +160,8 @@ function deleteContact(firstName,lastName){
      console.log("Contact "+firstName+" "+lastName+" does not exist!");
  }
 }
-console.log("Delete Contact and Update Address Book!");
-deleteContact("Ritu","Sharma");  //delete contact when exists
-deleteContact("Vastu","Sharma");  // contact does not exists
-console.log("Address Book size : "+addressBook.length);
-console.log("Address Book contacts : "+addressBook);
+console.log("Show the size of Address Book!");
+var size = addressBook.reduce(function(n,contact){
+    return n+(contact.firstName != 'undefined');
+},0);
+console.log("Address Book Size using reduce is :"+size);
