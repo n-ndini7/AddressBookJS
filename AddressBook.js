@@ -1,4 +1,4 @@
-//UC7 - ability to check for duplicate contact in the address book
+//UC9 - view persons by city or state
 class Contact{
     constructor (...params){
         this.firstName = params[0];
@@ -103,9 +103,9 @@ function addContact(contact){
         }
     }    
 try{
-    let contact1 = new Contact("Emily","Clark","Address 1","City zero","State zero",123456,919999999999,"ema@yahoo.com");
+    let contact1 = new Contact("Emily","Clark","Address 1","City One","State zero",123456,919999999999,"ema@yahoo.com");
     addressBook.push(contact1);
-    let contact2 = new Contact("Robert","Brown","Address 2","City Two","State two",777777,919898989898,"rob@gmail.com");
+    let contact2 = new Contact("Robert","Brown","Address 2","City One","State two",777777,919898989898,"rob@gmail.com");
     addressBook.push(contact2);
     let contact3 = new Contact("David","Doughlas","Address 3","City Three","State three",222222,919898989811,"dav@gmail.com");
     addressBook.push(contact3);
@@ -197,11 +197,20 @@ function searchContact(firstName,lastName,typeOfSearch,key){
     console.log("No such search can be performed!");
     }
 }
-console.log("Search for a person in a city or state!");
+console.log("view person by city or State!");
 var size = addressBook.reduce(function(n,contact){
    return n+(contact.firstName != 'undefined');
 },0);
-console.log("Address Book Size : "+size);
-console.log(searchContact("Ritu","Sharma","CITY","City Four"));
-console.log(searchContact("Vineet","Rai","CITY","City Three"));
-console.log(searchContact("David","Doughlas","STATE","State three"));
+function viewBychoice(typeOfView,key){
+    switch(typeOfView){
+        case "CITY":
+            return  addressBook.filter(contact => contact.city == key).map(contact1 => contact1.toString());
+        case "STATE":
+            return  addressBook.filter(contact => contact.state == key).map(contact1 => contact1.toString());
+        default:
+            console.log("Wrong Choice entered!!");
+            break;
+    }
+}
+console.log("Contacts in City One \n \n "+viewBychoice("CITY","City One"));
+console.log("Contacts in State Three \n \n"+viewBychoice("STATE","State Four"));
