@@ -172,14 +172,36 @@ function deleteContact(firstName,lastName){
      console.log("Contact "+firstName+" "+lastName+" does not exist!");
  }
 }
-console.log("Check for duplicate contact in the Address Book!");
-try{
-addContact(new Contact("Beetret","Wimson","Address 6","City five","State five",444444,919292929292,"raju@gmail.com"));
-addContact(new Contact("David","Doughlas","Address 3","City Three","State three",222222,919898989811,"dav@gmail.com"));
-}catch(e){
-    console.error(e);
+function searchContact(firstName,lastName,typeOfSearch,key){
+    switch(typeOfSearch){
+    case "CITY":
+     let found= addressBook.find(contact => ((contact.city==key)&&(contact.firstName == firstName) && (contact.lastName==lastName)));
+     if(found != null){
+         console.log("Contact Found!!");
+        return found;
+     }else 
+     {
+         return "Contact "+firstName+" "+lastName+" does not exist in "+key+" !";
+            break;
+    }
+    case "STATE":
+        let found2= addressBook.find(contact => ((contact.state==key)&&(contact.firstName == firstName) && (contact.lastName==lastName)));
+        if(found2 != null){
+            console.log("Contact Found!!");
+           return found2;
+        }else 
+        {
+            return "Contact "+firstName+" "+lastName+" does not exist in "+key+" !";
+       }   
+    default :
+    console.log("No such search can be performed!");
+    }
 }
+console.log("Search for a person in a city or state!");
 var size = addressBook.reduce(function(n,contact){
-    return n+(contact.firstName != 'undefined');
+   return n+(contact.firstName != 'undefined');
 },0);
 console.log("Address Book Size : "+size);
+console.log(searchContact("Ritu","Sharma","CITY","City Four"));
+console.log(searchContact("Vineet","Rai","CITY","City Three"));
+console.log(searchContact("David","Doughlas","STATE","State three"));
